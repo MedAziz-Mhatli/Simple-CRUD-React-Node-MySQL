@@ -71,19 +71,15 @@ function App() {
     });
   };
 */
-var UserInfo = {
-  name: string;
-  email: string;
-}
 
-function exportUserInfo(userInfo: UserInfo) {
-  const fileData = JSON.stringify(userInfo);
-  const blob = new Blob([fileData], { type: "text/plain" });
-  const url = URL.createObjectURL(blob);
-  const link = document.createElement("a");
-  link.download = "user-info.json";
-  link.href = url;
-  link.click();
+downloadTxtFile = () => {
+  const element = document.createElement("a");
+  const file = new Blob([document.getElementById('input').value],    
+              {type: 'text/plain;charset=utf-8'});
+  element.href = URL.createObjectURL(file);
+  element.download = "myFile.txt";
+  document.body.appendChild(element);
+  element.click();
 }
 
   return (
@@ -91,7 +87,7 @@ function exportUserInfo(userInfo: UserInfo) {
       <div className="information">
         <Button variant="contained" component="label">
           Upload
-        <input hidden accept="image/*" multiple type="file" onClick="exportUserinfo" />
+        <input hidden accept="image/*" multiple type="file" onClick={this.downloadTxtFile} />
         </Button>
 
 
