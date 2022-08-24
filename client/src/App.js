@@ -1,5 +1,5 @@
 import "./App.css";
-import { useState } from "react";
+import { Component, useState } from "react";
 import Axios from "axios";
 
 function App() {
@@ -71,16 +71,17 @@ function App() {
     });
   };
 */
-
-downloadTxtFile = () => {
-  const element = document.createElement("a");
-  const file = new Blob([document.getElementById('input').value],    
-              {type: 'text/plain;charset=utf-8'});
-  element.href = URL.createObjectURL(file);
-  element.download = "myFile.txt";
-  document.body.appendChild(element);
-  element.click();
-}
+class test extends Component{
+  downloadTxtFile = () => {
+    const element = document.createElement("a");
+    const file = new Blob([document.getElementById('input').value],    
+                {type: 'text/plain;charset=utf-8'});
+    element.href = URL.createObjectURL(file);
+    element.download = "myFile.txt";
+    document.body.appendChild(element);
+    element.click();
+  };
+};
 
   return (
     <div className="App">
