@@ -71,9 +71,30 @@ function App() {
     });
   };
 */
+var UserInfo = {
+  name: string;
+  email: string;
+}
+
+function exportUserInfo(userInfo: UserInfo) {
+  const fileData = JSON.stringify(userInfo);
+  const blob = new Blob([fileData], { type: "text/plain" });
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement("a");
+  link.download = "user-info.json";
+  link.href = url;
+  link.click();
+}
+
   return (
     <div className="App">
       <div className="information">
+        <Button variant="contained" component="label">
+          Upload
+        <input hidden accept="image/*" multiple type="file" onClick="exportUserinfo" />
+        </Button>
+
+
         <label>ROWID</label>
         <input
           type="text"
