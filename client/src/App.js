@@ -13,29 +13,29 @@ function App() {
 
   const [ProductList, setProductList] = useState([]);
 
-  /*const addEmployee = () => {
-    Axios.post("http://localhost:3001/create", {
-      name: name,
-      age: age,
-      country: country,
-      position: position,
-      wage: wage,
+  const addProducts = () => {
+    Axios.post("http://localhost:3000/create", {
+      ROWID: ROWID,
+      PRODUCT: PRODUCT,
+      QUANTITY: QUANTITY,
+      USER_ID: USER_ID,
+      BINLABEL: BINLABEL,
     }).then(() => {
-      setEmployeeList([
-        ...employeeList,
+      setProductList([
+        ...ProductList,
         {
-          name: name,
-          age: age,
-          country: country,
-          position: position,
-          wage: wage,
+          ROWID: ROWID,
+          PRODUCT: PRODUCT,
+          QUANTITY: QUANTITY,
+          USER_ID: USER_ID,
+          BINLABEL: BINLABEL,
         },
       ]);
     });
   };
-*/
+
   const getProducts = () => {
-    Axios.get("http://localhost:3001/products").then((response) => {
+    Axios.get("http://localhost:3000/products").then((response) => {
       setProductList(response.data);
     });
   };
@@ -109,7 +109,8 @@ function App() {
             setBINLABEL(event.target.value);
           }}
         />
-      
+            <button onClick={addProducts}>Add Produit</button>
+  
       </div>
       <div className="produits">
         <button onClick={getProducts}>Show Products</button>

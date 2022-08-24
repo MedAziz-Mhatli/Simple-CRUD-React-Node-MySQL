@@ -2,22 +2,22 @@ const express = require("express");
 const app = express();
 const mysql = require("mysql");
 const cors = require("cors");
+const bodyParser = require("body-parser");
 const { response } = require('express');
 app.use(bodyParser.json())
 const port  = process.env.PORT || 3000;
 
 app.use(cors());
 app.use(express.json());
-app.use(bodyParser.urlencoded(
-  { extended: true }
-  )
-);
-const db = mysql.createConnection({
-  user: "root",
-  host: "localhost",
-  password: "",
-  database: "teeest",
-});
+
+//mysql 
+const pool = mysql.createPool({ 
+  connectionLimit: 10, 
+  host: 'localhost', 
+  user: 'root', 
+  password: '', 
+  database: 'teeest'
+})
 
 /*app.post("/create", (req, res) => {
   const name = req.body.name;
