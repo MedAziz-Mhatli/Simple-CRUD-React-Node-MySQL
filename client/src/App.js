@@ -71,24 +71,19 @@ function App() {
     });
   };
 */
-class test extends Component{
-  downloadTxtFile = () => {
-    const element = document.createElement("a");
-    const file = new Blob([document.getElementById('input').value],    
-                {type: 'text/plain;charset=utf-8'});
-    element.href = URL.createObjectURL(file);
-    element.download = "myFile.txt";
-    document.body.appendChild(element);
-    element.click();
-  };
-};
+
+function saveStaticDataToFile() {
+  var blob = new Blob(["Welcome to Websparrow.org."],
+      { type: "text/plain;charset=utf-8" });
+  saveAs(blob, "static.txt");
+}
 
   return (
     <div className="App">
       <div className="information">
         <div>
         <input id="input" />
-        <button onClick={this.downloadTxtFile}>Download</button>  
+        <button onClick={this.saveStaticDataToFile}>Download</button>  
       </div>
 
         <label>ROWID</label>
