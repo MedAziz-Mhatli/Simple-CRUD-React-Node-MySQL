@@ -2,18 +2,24 @@ const express = require("express");
 const app = express();
 const mysql = require("mysql");
 const cors = require("cors");
+const { response } = require('express');
+app.use(bodyParser.json())
+const port  = process.env.PORT || 3000;
 
 app.use(cors());
 app.use(express.json());
-
+app.use(bodyParser.urlencoded(
+  { extended: true }
+  )
+);
 const db = mysql.createConnection({
   user: "root",
   host: "localhost",
-  password: "password",
-  database: "employeeSystem",
+  password: "",
+  database: "teeest",
 });
 
-app.post("/create", (req, res) => {
+/*app.post("/create", (req, res) => {
   const name = req.body.name;
   const age = req.body.age;
   const country = req.body.country;
@@ -31,19 +37,58 @@ app.post("/create", (req, res) => {
       }
     }
   );
-});
+});*/
 
-app.get("/employees", (req, res) => {
-  db.query("SELECT * FROM employees", (err, result) => {
-    if (err) {
-      console.log(err);
-    } else {
-      res.send(result);
-    }
-  });
-});
+//GET all products
 
-app.put("/update", (req, res) => {
+app.get('/products',(req,res)=> {
+  pool.getConnection((err,connection)=> {
+      if (err) throw err;
+      console.log(`connected as id ${connection.threadId}`);
+
+      //query(sqlString,callback)
+
+      connection.query('SELECT * FROM feuil1_2',(err ,rows) => {
+          connection.release(); //return the connection to pool 
+
+          if (!err) { 
+              res.send(rows)
+              response.render('sample_data',
+               { title :'Node JS MYSQL app' , 
+              action:'list', sampleData:data}) ; 
+          }else {
+              
+              console.log(err)
+
+          }
+      })    
+  })
+      
+
+})
+
+//GET a product by ROWID 
+
+app.get('/products/:ROWID', (req,res)=> { 
+  pool.getConnection((err,connection)=> {
+      if (err) throw err 
+      console.log(`connected as id ${connection.threadId}`)
+      connection.query('SELECT * FROM feuil1_2 where ROWID = ?',[req.params.ROWID], (err,rows)=> {
+          connection.release(); //return the connection to pool 
+          if (!err) {
+              res.send(rows)
+          } else { 
+              console.log(err)
+          }
+      })
+  })
+})
+
+
+
+
+
+/*app.put("/update", (req, res) => {
   const id = req.body.id;
   const wage = req.body.wage;
   db.query(
@@ -69,7 +114,5 @@ app.delete("/delete/:id", (req, res) => {
     }
   });
 });
-
-app.listen(3001, () => {
-  console.log("Yey, your server is running on port 3001");
-});
+*/
+app.listen(port ,()=>console.log(`Listen on port ${port}`))

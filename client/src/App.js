@@ -3,17 +3,17 @@ import { useState } from "react";
 import Axios from "axios";
 
 function App() {
-  const [name, setName] = useState("");
-  const [age, setAge] = useState(0);
-  const [country, setCountry] = useState("");
-  const [position, setPosition] = useState("");
-  const [wage, setWage] = useState(0);
+  const [ROWID, setROWID] = useState("");
+  const [PRODUCT, setPRODUCT] = useState("");
+  const [QUANTITY, setQUANTITY] = useState("");
+  const [USER_ID	, setUSER_ID	] = useState("");
+  const [BINLABEL	, setBINLABEL	] = useState("");
 
-  const [newWage, setNewWage] = useState(0);
+  //const [newWage, setNewWage] = useState(0);
 
-  const [employeeList, setEmployeeList] = useState([]);
+  const [ProductList, setProductList] = useState([]);
 
-  const addEmployee = () => {
+  /*const addEmployee = () => {
     Axios.post("http://localhost:3001/create", {
       name: name,
       age: age,
@@ -33,14 +33,14 @@ function App() {
       ]);
     });
   };
-
-  const getEmployees = () => {
-    Axios.get("http://localhost:3001/employees").then((response) => {
-      setEmployeeList(response.data);
+*/
+  const getProducts = () => {
+    Axios.get("http://localhost:3001/products").then((response) => {
+      setProductList(response.data);
     });
   };
 
-  const updateEmployeeWage = (id) => {
+  /*const updateEmployeeWage = (id) => {
     Axios.put("http://localhost:3001/update", { wage: newWage, id: id }).then(
       (response) => {
         setEmployeeList(
@@ -70,88 +70,63 @@ function App() {
       );
     });
   };
-
+*/
   return (
     <div className="App">
       <div className="information">
-        <label>Name:</label>
+        <label>ROWID</label>
         <input
           type="text"
           onChange={(event) => {
-            setName(event.target.value);
+            setROWID(event.target.value);
           }}
         />
-        <label>Age:</label>
-        <input
-          type="number"
-          onChange={(event) => {
-            setAge(event.target.value);
-          }}
-        />
-        <label>Country:</label>
+        <label>PRODUCT</label>
         <input
           type="text"
           onChange={(event) => {
-            setCountry(event.target.value);
+            setPRODUCT(event.target.value);
           }}
         />
-        <label>Position:</label>
+        <label>QUANTITY:</label>
         <input
           type="text"
           onChange={(event) => {
-            setPosition(event.target.value);
+            setQUANTITY(event.target.value);
           }}
         />
-        <label>Wage (year):</label>
+        <label>USER_ID:</label>
         <input
-          type="number"
+          type="text"
           onChange={(event) => {
-            setWage(event.target.value);
+            setUSER_ID(event.target.value);
           }}
         />
-        <button onClick={addEmployee}>Add Employee</button>
+        <label>BINLABEL</label>
+        <input
+          type="text"
+          onChange={(event) => {
+            setBINLABEL(event.target.value);
+          }}
+        />
+      
       </div>
-      <div className="employees">
-        <button onClick={getEmployees}>Show Employees</button>
+      <div className="produits">
+        <button onClick={getProducts}>Show Products</button>
 
-        {employeeList.map((val, key) => {
+        {ProductList.map((val, key) => {
           return (
-            <div className="employee">
+            <div className="produit">
               <div>
-                <h3>Name: {val.name}</h3>
-                <h3>Age: {val.age}</h3>
-                <h3>Country: {val.country}</h3>
-                <h3>Position: {val.position}</h3>
-                <h3>Wage: {val.wage}</h3>
+                <h3>ROWID: {val.ROWID}</h3>
+                <h3>PRODUCT: {val.PRODUCT}</h3>
+                <h3>QUANTITY: {val.QUANTITY}</h3>
+                <h3>USER_ID: {val.USER_ID}</h3>
+                <h3>BINLABEL: {val.BINLABEL}</h3>
               </div>
-              <div>
-                <input
-                  type="text"
-                  placeholder="2000..."
-                  onChange={(event) => {
-                    setNewWage(event.target.value);
-                  }}
-                />
-                <button
-                  onClick={() => {
-                    updateEmployeeWage(val.id);
-                  }}
-                >
-                  {" "}
-                  Update
-                </button>
-
-                <button
-                  onClick={() => {
-                    deleteEmployee(val.id);
-                  }}
-                >
-                  Delete
-                </button>
-              </div>
-            </div>
-          );
-        })}
+             </div> 
+          );}
+        )}
       </div>
     </div>
   );
