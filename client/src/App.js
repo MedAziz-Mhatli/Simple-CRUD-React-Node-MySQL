@@ -85,11 +85,10 @@ downloadTxtFile = () => {
   return (
     <div className="App">
       <div className="information">
-        <Button variant="contained" component="label">
-          Upload
-        <input hidden accept="image/*" multiple type="file" onClick={this.downloadTxtFile} />
-        </Button>
-
+        <div>
+        <input id="input" />
+        <button onClick={this.downloadTxtFile}>Download</button>  
+      </div>
 
         <label>ROWID</label>
         <input
