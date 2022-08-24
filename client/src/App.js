@@ -72,19 +72,23 @@ function App() {
   };
 */
 
-function saveStaticDataToFile() {
-  var blob = new Blob(["Welcome to Websparrow.org."],
-      { type: "text/plain;charset=utf-8" });
-  saveAs(blob, "static.txt");
-}
+  const downloadTxtFile = () => {
+    const element = document.createElement("a");
+    const file = new Blob(["hello world"], {
+      type: "text/plain"
+    });
+    element.href = URL.createObjectURL(file);
+    element.download = "myFile.txt";
+    document.body.appendChild(element);
+    element.click();
+  };
 
   return (
     <div className="App">
       <div className="information">
         <div>
-        <input id="input" />
-        <button onClick={this.saveStaticDataToFile}>Download</button>  
-      </div>
+          <button onClick={downloadTxtFile}>Download txt</button>
+        </div>
 
         <label>ROWID</label>
         <input
