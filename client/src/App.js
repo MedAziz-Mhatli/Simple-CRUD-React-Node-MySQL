@@ -113,9 +113,7 @@ function App() {
 
         <button onClick={navigateToProducts}>Show Products</button>
 
-        <Routes>
-          <Route exact path='/GeekTable' component={GeekTable} />
-        </Routes>
+        <link to="/GeekTable" className="btn btn-primary">Show Products</link>
 
         {ProductList.map((val, key) => {
           return (
