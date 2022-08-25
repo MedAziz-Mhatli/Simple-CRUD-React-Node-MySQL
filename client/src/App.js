@@ -3,6 +3,7 @@ import {  useState } from "react";
 import Axios from "axios";
 import JsonDataDisplay from './GeekTable'
 import {Routes, Route, useNavigate} from 'react-router-dom';
+import GeekTable from './GeekTable';
 
 function App() {
   const [ROWID, setROWID] = useState("");
@@ -113,7 +114,7 @@ function App() {
         <button onClick={navigateToProducts}>Show Products</button>
 
         <Routes>
-          <Route path="/GeekTable" element={<GeekTable/>} />
+          <Route exact path='/GeekTable' component={GeekTable} />
         </Routes>
 
         {ProductList.map((val, key) => {
