@@ -35,12 +35,12 @@ function App() {
     });
   };
 
-  const navigate = useNavigate();
+  /*const navigate = useNavigate();
   
   const navigateToProducts = () => {
     // navigate to /products
     navigate('/GeekTable');
-  };
+  };*/
 
   /*
   const getProducts = () => {
@@ -110,8 +110,6 @@ function App() {
   
       </div>
       <div className="produits">
-
-        <button onClick={navigateToProducts}>Show Products</button>
 
         <link to="/GeekTable" className="btn btn-primary">Show Products</link>
 
