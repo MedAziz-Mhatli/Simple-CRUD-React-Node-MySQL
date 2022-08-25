@@ -33,9 +33,9 @@ app.get('/products',(req,res)=> {
 
           if (!err) { 
               res.send(rows)
-              response.render('sample_data',
-               { title :'Node JS MYSQL app' , 
-              action:'list', sampleData:data}) ; 
+         //     response.render('sample_data',
+           //    { title :'Node JS MYSQL app' , 
+            //  action:'list', sampleData:data}) ; 
           }else {
               
               console.log(err)

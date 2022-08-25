@@ -1,6 +1,7 @@
 import "./App.css";
-import { Component, useState } from "react";
+import {  useState } from "react";
 import Axios from "axios";
+import JsonDataDisplay from './GeekTable'
 
 function App() {
   const [ROWID, setROWID] = useState("");
@@ -33,9 +34,13 @@ function App() {
   };
 
   const getProducts = () => {
-    Axios.get("http://localhost:3000/products").then((response) => {
-      setProductList(response.data);
-    });
+    return (
+      <div className="App">
+        
+        <JsonDataDisplay/>
+   
+      </div>
+    );
   };
 
   const downloadTxtFile = () => {
@@ -94,8 +99,12 @@ function App() {
   
       </div>
       <div className="produits">
+<<<<<<< Updated upstream
         <button onClick={getProducts}>Show Products</button>
         
+=======
+        <button onClick={JsonDataDisplay}>Show Products</button>
+>>>>>>> Stashed changes
 
         {ProductList.map((val, key) => {
           return (
