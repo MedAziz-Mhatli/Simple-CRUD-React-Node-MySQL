@@ -2,6 +2,7 @@ import "./App.css";
 import {  useState } from "react";
 import Axios from "axios";
 import JsonDataDisplay from './GeekTable'
+import {Routes, Route, useNavigate} from 'react-router-dom';
 
 function App() {
   const [ROWID, setROWID] = useState("");
@@ -33,6 +34,14 @@ function App() {
     });
   };
 
+  const navigate = useNavigate();
+  
+  const navigateToProducts = () => {
+    // navigate to /products
+    navigate('/GeekTable');
+  };
+
+  /*
   const getProducts = () => {
     return (
       <div className="App">
@@ -42,6 +51,7 @@ function App() {
       </div>
     );
   };
+  */
 
   const downloadTxtFile = () => {
     const element = document.createElement("a");
@@ -99,12 +109,12 @@ function App() {
   
       </div>
       <div className="produits">
-<<<<<<< Updated upstream
-        <button onClick={getProducts}>Show Products</button>
-        
-=======
-        <button onClick={JsonDataDisplay}>Show Products</button>
->>>>>>> Stashed changes
+
+        <button onClick={navigateToProducts}>Show Products</button>
+
+        <Routes>
+          <Route path="/GeekTable" element={<GeekTable/>} />
+        </Routes>
 
         {ProductList.map((val, key) => {
           return (
