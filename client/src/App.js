@@ -1,5 +1,5 @@
 import "./App.css";
-import {  useState } from "react";
+import { useState } from "react";
 import Axios from "axios";
 import JsonDataDisplay from './GeekTable'
 import {Routes, Route, useNavigate} from 'react-router-dom';
@@ -113,7 +113,7 @@ function App() {
         <button onClick={navigateToProducts}>Show Products</button>
 
         <Routes>
-          <Route path="/GeekTable" element={<GeekTable/>} />
+          <Route path="./GeekTable" element={<GeekTable/>} />
         </Routes>
 
         {ProductList.map((val, key) => {
